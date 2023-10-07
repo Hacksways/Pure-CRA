@@ -1,24 +1,43 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CheckEMail } from "components/auth/check-email/check-email";
+import { SignIn } from "components/auth/login-form/sign-in";
+import { RecoveryPassword } from "components/auth/recovery-password/recovery-password";
+import { Header } from "components/ui/header/header";
+import { SelectBox } from "components/ui/select-box/select-box";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeadCell,
+  TableRow,
+} from "components/ui/table/table";
+import { useState } from "react";
+import { Router } from "router";
+
+type Sort = {
+  key: string;
+  direction: "asc" | "desc";
+} | null;
 
 function App() {
+  const [sort, setSort] = useState<Sort>(null);
+
+  const handleSort = (key: string) => {
+    if (sort && sort.key === key) {
+      setSort({
+        key,
+        direction: sort.direction === "asc" ? "desc" : "asc",
+      });
+    } else {
+      setSort({
+        key,
+        direction: "asc",
+      });
+    }
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router />
     </div>
   );
 }
