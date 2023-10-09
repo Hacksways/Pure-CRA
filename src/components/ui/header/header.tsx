@@ -14,7 +14,7 @@ export const Header = ({ variant = "with button" }: Props) => {
       {variant === "with avatar" ? (
         <div className={s.userBlock}>
           <Typography variant="subtitle1" as="span" className={s.userName}>
-            Sign In
+            User name
           </Typography>
           <img
             className={s.avatar}
