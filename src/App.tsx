@@ -12,32 +12,36 @@ import {
   TableRow,
 } from "components/ui/table/table";
 import { useState } from "react";
+import { Provider } from "react-redux";
 import { Router } from "router";
+import { store } from "services/store";
 
-type Sort = {
-  key: string;
-  direction: "asc" | "desc";
-} | null;
+// type Sort = {
+//   key: string;
+//   direction: "asc" | "desc";
+// } | null;
 
 function App() {
-  const [sort, setSort] = useState<Sort>(null);
+  // const [sort, setSort] = useState<Sort>(null);
 
-  const handleSort = (key: string) => {
-    if (sort && sort.key === key) {
-      setSort({
-        key,
-        direction: sort.direction === "asc" ? "desc" : "asc",
-      });
-    } else {
-      setSort({
-        key,
-        direction: "asc",
-      });
-    }
-  };
+  // const handleSort = (key: string) => {
+  //   if (sort && sort.key === key) {
+  //     setSort({
+  //       key,
+  //       direction: sort.direction === "asc" ? "desc" : "asc",
+  //     });
+  //   } else {
+  //     setSort({
+  //       key,
+  //       direction: "asc",
+  //     });
+  //   }
+  // };
   return (
     <div className="App">
-      <Router />
+      <Provider store={store}>
+        <Router />
+      </Provider>
     </div>
   );
 }
