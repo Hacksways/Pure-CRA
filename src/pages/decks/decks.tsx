@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "components/ui/table/table";
 import { Typography } from "components/ui/typography";
-import { useCreateDeckMutation, useGetDecksQuery } from "services/base-api";
+import { useCreateDeckMutation, useGetDecksQuery } from "services/decks";
 import s from "./decks.module.scss";
 
 export const Decks = () => {
