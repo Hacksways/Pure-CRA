@@ -3,9 +3,16 @@
   flex-direction: column;
   gap: 30px;
   margin-top: 36px;
-}
-.button {
-  display: flex;
-  align-self: end;
-  margin: 0 136px;
+
+  .button {
+    display: flex;
+    align-self: end;
+    margin: 0 136px;
+  }
+
+  .tempButton {
+    background-color: var(--color-accent-500);
+    border: none;
+    border-radius: 0.25rem;
+  }
 }

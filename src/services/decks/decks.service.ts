@@ -1,5 +1,12 @@
 import { baseApi } from "../base-api";
-import { CreateDeckArgs, Deck, Decks, GetDecksParams } from "./decks.types";
+import {
+  CreateDeckArgs,
+  Deck,
+  Decks,
+  DeleteDeckParams,
+  DeleteDeck,
+  GetDecksParams,
+} from "./decks.types";
 
 export const DecksService = baseApi.injectEndpoints({
   endpoints: (builder) => {
@@ -19,8 +26,19 @@ export const DecksService = baseApi.injectEndpoints({
         }),
         invalidatesTags: ["Decks"],
       }),
+      deleteDeck: builder.mutation<DeleteDeck, DeleteDeckParams>({
+        query: (params) => ({
+          url: `v1/decks/${params.id}`,
+          method: "DELETE",
+        }),
+        invalidatesTags: ["Decks"],
+      }),
     };
   },
 });
 
-export const { useGetDecksQuery, useCreateDeckMutation } = DecksService;
+export const {
+  useGetDecksQuery,
+  useCreateDeckMutation,
+  useDeleteDeckMutation,
+} = DecksService;

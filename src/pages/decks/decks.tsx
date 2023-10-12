@@ -10,7 +10,11 @@ import {
 import { TextField } from "components/ui/text-field";
 import { Typography } from "components/ui/typography";
 import { ChangeEvent, useState } from "react";
-import { useCreateDeckMutation, useGetDecksQuery } from "services/decks";
+import {
+  useCreateDeckMutation,
+  useDeleteDeckMutation,
+  useGetDecksQuery,
+} from "services/decks";
 import s from "./decks.module.scss";
 
 export const Decks = () => {
@@ -19,9 +23,14 @@ export const Decks = () => {
 
   const { data } = useGetDecksQuery({ name, currentPage });
   const [createDeck] = useCreateDeckMutation();
+  const [deleteDeck] = useDeleteDeckMutation();
 
   const onClickAddNewDeckButton = () => {
     createDeck({ name: "Temp test deck" });
+  };
+
+  const onClickDeleteDeckButton = (id: string) => {
+    deleteDeck({ id });
   };
 
   const onChangeSearchTextField = (e: ChangeEvent<HTMLInputElement>) => {
@@ -54,7 +63,14 @@ export const Decks = () => {
                 {new Date(deck.updated).toLocaleDateString()}
               </TableCell>
               <TableCell>{deck.author.name}</TableCell>
-              <TableCell>icons...</TableCell>
+              <TableCell>
+                <button
+                  className={s.tempButton}
+                  onClick={() => onClickDeleteDeckButton(deck.id)}
+                >
+                  Delete
+                </button>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
