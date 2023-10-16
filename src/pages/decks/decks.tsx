@@ -1,5 +1,10 @@
+import { Edit } from "assets/icons";
+import PlayArrow from "assets/icons/play-arrow";
+import Trash from "assets/icons/trash";
 import { Button } from "components/ui/button";
 import { Card } from "components/ui/card";
+import { Dropdown } from "components/ui/dropdown";
+import { DropdownItemWithIcon } from "components/ui/dropdown/dropdownItem/dropdownItemWithIcon";
 import { Modal } from "components/ui/modal/modal";
 import {
   Table,
