@@ -6,6 +6,8 @@ import {
   DeleteDeckParams,
   DeleteDeck,
   GetDecksParams,
+  Cards,
+  GetCardsParams,
 } from "./decks.types";
 
 export const DecksService = baseApi.injectEndpoints({
@@ -33,6 +35,11 @@ export const DecksService = baseApi.injectEndpoints({
         }),
         invalidatesTags: ["Decks"],
       }),
+      getCards: builder.query<Cards, GetCardsParams>({
+        query: (params) => ({
+          url: `v1/decks/${params.id}/cards`,
+        }),
+      }),
     };
   },
 });
@@ -41,4 +48,5 @@ export const {
   useGetDecksQuery,
   useCreateDeckMutation,
   useDeleteDeckMutation,
+  useGetCardsQuery,
 } = DecksService;

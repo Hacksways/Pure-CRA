@@ -1,4 +1,5 @@
 import { Header } from "components/ui/header/header";
+import { Cards } from "pages/decks/cards";
 import { Decks } from "pages/decks/decks";
 import { Login } from "pages/login";
 import {
@@ -22,6 +23,7 @@ const privateRoutes: RouteObject[] = [
     path: "/",
     element: <Decks />,
   },
+  { path: "/cards/:deckID", element: <Cards /> },
 ];
 
 const router = createBrowserRouter([

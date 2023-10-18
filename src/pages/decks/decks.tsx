@@ -1,10 +1,4 @@
-import { Edit } from "assets/icons";
-import PlayArrow from "assets/icons/play-arrow";
-import Trash from "assets/icons/trash";
 import { Button } from "components/ui/button";
-import { Card } from "components/ui/card";
-import { Dropdown } from "components/ui/dropdown";
-import { DropdownItemWithIcon } from "components/ui/dropdown/dropdownItem/dropdownItemWithIcon";
 import { Modal } from "components/ui/modal/modal";
 import {
   Table,
@@ -17,6 +11,7 @@ import {
 import { TextField } from "components/ui/text-field";
 import { Typography } from "components/ui/typography";
 import { ChangeEvent, useState } from "react";
+import { NavLink } from "react-router-dom";
 import {
   Deck,
   useCreateDeckMutation,
@@ -105,7 +100,9 @@ export const Decks = () => {
         <TableBody>
           {data?.items?.map((deck) => (
             <TableRow key={deck.id}>
-              <TableCell>{deck.name}</TableCell>
+              <NavLink to={`/cards/${deck.id}`}>
+                <TableCell>{deck.name}</TableCell>
+              </NavLink>
               <TableCell>{deck.cardsCount}</TableCell>
               <TableCell>
                 {new Date(deck.updated).toLocaleDateString()}
