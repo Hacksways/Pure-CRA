@@ -24,7 +24,8 @@
 }
 
 .td {
-  word-break: break-all;
+  word-break: normal;
+  white-space: pre-wrap;
   width: 201px;
   padding: 6px 24px;
   background-color: var(--color-dark-900);
