@@ -1,3 +1,4 @@
+import { Button } from "components/ui/button";
 import {
   Table,
   TableBody,
@@ -6,18 +7,34 @@ import {
   TableHeadCell,
   TableRow,
 } from "components/ui/table/table";
+import { Typography } from "components/ui/typography";
 import { useParams } from "react-router-dom";
-import { useGetCardsQuery } from "services/decks";
-import s from './cards.module.scss'
+import { useCreateCardMutation, useGetCardsQuery } from "services/decks";
+import s from "./cards.module.scss";
 
 export const Cards = () => {
   const { deckID } = useParams();
 
-  const { data } = useGetCardsQuery({ id: deckID as string });
+  const [createCard] = useCreateCardMutation();
 
-  console.log(data);
+  const { data } = useGetCardsQuery({
+    id: deckID as string,
+  });
+
+  // console.log(data);
+
+  const onClickCreateCard = () => {
+
+    createCard({ id: deckID as string, question: "Laugh", answer: "Haha" });
+  };
+
   return (
     <div className={s.cards}>
+      <Button className={s.button} onClick={onClickCreateCard}>
+        <Typography variant="subtitle2" as="span">
+          Add New Card
+        </Typography>
+      </Button>
       <Table>
         <TableHead>
           <TableRow>

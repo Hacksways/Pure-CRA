@@ -31,6 +31,7 @@ export type Pagination = {
 };
 
 export type CreateDeckArgs = Pick<Deck, "name" | "cover" | "isPrivate">;
+
 export type DeleteDeckParams = Pick<Deck, "id">;
 
 type Direction = "asc" | "desc";
@@ -79,4 +80,14 @@ export type Card = {
   grade: number;
   created: string;
   updated: string;
+};
+
+export type CreateCardArgs = {
+  id: string;
+  question: string;
+  answer: string;
+  questionImg?: string;
+  answerImg?: string;
+  questionVideo?: string;
+  answerVideo?: string;
 };
