@@ -1,20 +1,15 @@
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-
-import { zodResolver } from "@hookform/resolvers/zod";
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useForm } from 'react-hook-form'
+import { z } from 'zod'
 
 const schema = z.object({
   email: z.string().email(),
-});
+})
 
-export type RecoveryPasswordForm = z.infer<typeof schema>;
+export type RecoveryPasswordForm = z.infer<typeof schema>
 
 export const useRecoveryPasswordScheme = () => {
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<RecoveryPasswordForm>({ resolver: zodResolver(schema) });
+  const { handleSubmit, control } = useForm<RecoveryPasswordForm>({ resolver: zodResolver(schema) })
 
-  return { handleSubmit, control };
-};
+  return { handleSubmit, control }
+}

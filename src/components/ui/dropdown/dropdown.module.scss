@@ -8,9 +8,9 @@
 }
 
 .content {
-  // position: relative;
+  position: relative;
 
-  margin-top: 10px;
+  margin-top: 1px;
   padding: 12px;
 
   background-color: var(--color-dark-700);
@@ -20,7 +20,7 @@
 
 .arrow {
   position: absolute;
-  top: -15px;
+  top: -4px;
   left: calc(50% - 4px);
   transform: rotate(45deg);
 
@@ -28,10 +28,9 @@
   height: 10px;
 
   background-color: var(--color-dark-700);
-  border: 1px solid var(--color-dark-500);
-  border-left: none;
+  border: 1.2px solid var(--color-dark-500);
   border-top: none;
-  border-width: 1.2px;
+  border-left: none;
 
   fill: var(--color-dark-700);
 }

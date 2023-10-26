@@ -1,4 +1,4 @@
-import { ComponentProps, FC } from "react";
+import { ComponentProps, FC, ReactNode } from 'react'
 
 import {
   Dialog,
@@ -7,71 +7,78 @@ import {
   DialogPortal,
   DialogClose,
   DialogTitle,
-} from "@radix-ui/react-dialog";
+  DialogTrigger,
+} from '@radix-ui/react-dialog'
+import { AnimatePresence } from 'framer-motion'
 
-import s from "./modal.module.scss";
+import s from './modal.module.scss'
 
-import { Close } from "assets/icons";
+import { Close } from 'assets'
 
-export type ModalSize = "sm" | "md" | "lg";
+export type ModalSize = 'sm' | 'md' | 'lg'
 
 export type ModalPropsType = {
-  open: boolean;
-  onClose?: () => void;
-  showCloseButton?: boolean;
-  title?: string;
-  modalSize?: ModalSize;
-} & ComponentProps<"div">;
+  trigger?: ReactNode
+  open: boolean
+  onClose?: (open: boolean) => void
+  showCloseButton?: boolean
+  title?: string
+  modalSize?: ModalSize
+} & ComponentProps<'div'>
 
 export const Modal: FC<ModalPropsType> = ({
+  trigger,
   open = false,
-  modalSize = "md",
+  modalSize = 'md',
   title,
   className,
   onClose,
   children,
   showCloseButton = true,
 }) => {
-  function handleModalClosed() {
-    onClose?.();
-  }
+  // function handleModalClosed() {
+  //   onClose?.()
+  // }
 
-  const contentClassName = getContentClassName(modalSize, className);
+  const contentClassName = getContentClassName(modalSize, className)
 
   return (
-    <Dialog open={open} onOpenChange={handleModalClosed}>
-      {open && (
-        <DialogPortal forceMount>
-          <DialogOverlay>
-            <div className={s.overlay}></div>
-          </DialogOverlay>
-          <DialogContent className={contentClassName}>
-            <div className={s.header}>
-              <DialogTitle asChild>
-                <h2 className={s.title}>{title}</h2>
-              </DialogTitle>
-              {showCloseButton && (
-                <DialogClose className={s.closeButton}>
-                  <Close />
-                </DialogClose>
-              )}
-            </div>
-            <div className={s.contentBox}>{children}</div>
-          </DialogContent>
-        </DialogPortal>
-      )}
+    <Dialog open={open} onOpenChange={onClose}>
+      <DialogTrigger asChild>{trigger}</DialogTrigger>
+      <AnimatePresence>
+        {open && (
+          <DialogPortal forceMount>
+            <DialogOverlay>
+              <div className={s.overlay}></div>
+            </DialogOverlay>
+            <DialogContent className={contentClassName}>
+              <div className={s.header}>
+                <DialogTitle asChild>
+                  <h2 className={s.title}>{title}</h2>
+                </DialogTitle>
+                {showCloseButton && (
+                  <DialogClose className={s.closeButton}>
+                    <Close />
+                  </DialogClose>
+                )}
+              </div>
+              <div className={s.contentBox}>{children}</div>
+            </DialogContent>
+          </DialogPortal>
+        )}
+      </AnimatePresence>
     </Dialog>
-  );
-};
+  )
+}
 
 function getContentClassName(size: ModalSize, className?: string) {
-  const sizeClassName = getSizeClassName(size);
+  const sizeClassName = getSizeClassName(size)
 
-  return [className, s.content, sizeClassName].filter(Boolean).join(" ");
+  return [className, s.content, sizeClassName].filter(Boolean).join(' ')
 }
 
 function getSizeClassName(size: ModalSize) {
-  if (size === "sm") return s.sm;
-  if (size === "md") return s.md;
-  if (size === "lg") return s.lg;
+  if (size === 'sm') return s.sm
+  if (size === 'md') return s.md
+  if (size === 'lg') return s.lg
 }

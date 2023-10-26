@@ -1,26 +1,21 @@
-import {
-  ComponentProps,
-  ComponentPropsWithoutRef,
-  forwardRef,
-  useState,
-} from "react";
+import { ChangeEvent, ComponentProps, ComponentPropsWithoutRef, forwardRef, useState } from 'react'
 
-import { Typography } from "../typography";
+import { Typography } from '../typography'
 
-import s from "./text-field.module.scss";
+import s from './text-field.module.scss'
 
-import { Eye, EyeOff, Search } from "assets/icons";
+import { Eye, EyeOff, Search } from 'assets'
 
 export type TextFieldProps = {
-  onValueChange?: (value: string) => void;
-  containerProps?: ComponentProps<"div">;
-  labelProps?: ComponentProps<"label">;
-  errorMessage?: string;
-  label?: string;
-  isSearch?: boolean;
-  isDisabled?: boolean;
-  placeholder?: string | JSX.Element | undefined;
-} & ComponentPropsWithoutRef<"input">;
+  onValueChange?: (value: string) => void
+  containerProps?: ComponentProps<'div'>
+  labelProps?: ComponentProps<'label'>
+  errorMessage?: string
+  label?: string
+  isSearch?: boolean
+  isDisabled?: boolean
+  placeholder?: string | JSX.Element | undefined
+} & ComponentPropsWithoutRef<'input'>
 
 export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
   (
@@ -37,26 +32,26 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
       isDisabled,
       ...restProps
     },
-    ref,
+    ref
   ) => {
-    const [showPassword, setShowPassword] = useState(false);
-    const passwordShown = type === "password";
-    const [inputValue, setInputValue] = useState("");
-    const finalType = getFinalType(type, showPassword, isSearch);
+    const [showPassword, setShowPassword] = useState(false)
+    const passwordShown = type === 'password'
+    const [inputValue, setInputValue] = useState('')
+    const finalType = getFinalType(type, showPassword, isSearch)
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      onChange?.(e);
-      onValueChange?.(e.target.value);
-      setInputValue(e.target.value);
-    };
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+      onChange?.(e)
+      onValueChange?.(e.target.value)
+      setInputValue(e.target.value)
+    }
 
     return (
-      <div>
+      <>
         {label && (
           <Typography
             variant="body2"
             as="label"
-            className={`${s.label} ${labelProps?.className || ""}`}
+            className={`${s.label} ${labelProps?.className || ''}`}
           >
             {label}
           </Typography>
@@ -64,12 +59,10 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
 
         <div className={s.TextFieldContainer}>
           <input
-            className={`${`${s.field} ${errorMessage ? s.error : ""} ${
-              className || ""
-            }`} ${isDisabled ? s.disabled : ""} ${
-              isSearch ? s.searchCont : ""
-            }`}
-            placeholder={inputValue ? "" : placeholder}
+            className={`${s.field} ${errorMessage ? s.error : ''} ${className || ''} ${
+              isDisabled ? s.disabled : ''
+            } ${isSearch ? s.searchCont : ''}`}
+            placeholder={inputValue ? '' : placeholder}
             ref={ref}
             type={finalType}
             onChange={handleChange}
@@ -79,8 +72,8 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
           {passwordShown && (
             <button
               className={s.showPassword}
-              type={"button"}
-              onClick={() => setShowPassword((prev) => !prev)}
+              type={'button'}
+              onClick={() => setShowPassword(prev => !prev)}
             >
               {showPassword ? <Eye /> : <EyeOff />}
             </button>
@@ -90,22 +83,22 @@ export const TextField = forwardRef<HTMLInputElement, TextFieldProps>(
         <Typography variant="error" className={s.error}>
           {errorMessage}
         </Typography>
-      </div>
-    );
-  },
-);
+      </>
+    )
+  }
+)
 
 function getFinalType(
-  type: ComponentProps<"input">["type"],
+  type: ComponentProps<'input'>['type'],
   showPassword: boolean,
-  isSearch: boolean | undefined,
+  isSearch: boolean | undefined
 ) {
   if (isSearch) {
-    return "search";
+    return 'search'
   }
-  if (type === "password" && showPassword) {
-    return "text";
+  if (type === 'password' && showPassword) {
+    return 'text'
   }
 
-  return type;
+  return type
 }

@@ -1,25 +1,34 @@
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  height: 60px;
   position: sticky;
-
   top: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  height: 60px;
   padding: 0 136px;
+
   background-color: var(--color-dark-700);
   border-bottom: 1px solid var(--color-dark-500);
+
+  .headerLogo {
+    display: flex;
+  }
 
   .userBlock {
     display: flex;
     align-items: center;
+
     .userName {
-      border-bottom-style: dashed;
       margin-right: 14px;
+      border-bottom-style: dashed;
     }
-    .wrapperAvatar {
-      display: flex;
+
+    .avatar {
+      width: 36px;
+      height: 36px;
+      border-radius: 36px;
     }
   }
 }

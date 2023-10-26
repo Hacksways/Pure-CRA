@@ -2,10 +2,27 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
-  margin-top: 36px;
+
+  max-width: 1006px;
+  margin: 36px auto auto;
+
   .button {
-    display: flex;
     align-self: end;
-    margin: 0 136px;
   }
+
+  .image {
+    width: 150px;
+    height: 50px;
+  }
+}
+
+.textModal {
+  width: 100%;
+  white-space: pre-line;
+}
+
+.blockButton {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }

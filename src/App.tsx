@@ -1,49 +1,12 @@
-import { CheckEMail } from "components/auth/check-email/check-email";
-import { SignIn } from "components/auth/login-form/sign-in";
-import { RecoveryPassword } from "components/auth/recovery-password/recovery-password";
-import { Header } from "components/ui/header/header";
-import { SelectBox } from "components/ui/select-box/select-box";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeadCell,
-  TableRow,
-} from "components/ui/table/table";
-import { useState } from "react";
-import { Provider } from "react-redux";
-import { Router } from "router";
-import { store } from "services/store";
+import { Provider } from 'react-redux'
 
-// type Sort = {
-//   key: string;
-//   direction: "asc" | "desc";
-// } | null;
+import { Router } from 'router'
+import { store } from 'services/store'
 
-function App() {
-  // const [sort, setSort] = useState<Sort>(null);
-
-  // const handleSort = (key: string) => {
-  //   if (sort && sort.key === key) {
-  //     setSort({
-  //       key,
-  //       direction: sort.direction === "asc" ? "desc" : "asc",
-  //     });
-  //   } else {
-  //     setSort({
-  //       key,
-  //       direction: "asc",
-  //     });
-  //   }
-  // };
+export function App() {
   return (
-    <div className="App">
-      <Provider store={store}>
-        <Router />
-      </Provider>
-    </div>
-  );
+    <Provider store={store}>
+      <Router />
+    </Provider>
+  )
 }
-
-export default App;

@@ -1,26 +1,22 @@
-import { DevTool } from "@hookform/devtools";
+import { DevTool } from '@hookform/devtools'
 
-import { Button } from "../../ui/button";
+import s from './sign-in.module.scss'
 
-import s from "./sign-in.module.scss";
-
-import { Typography } from "components/ui/typography";
-import { ControlledTextField } from "components/ui/controlled/controlled-text-field";
-import { ControlledCheckbox } from "components/ui/controlled/controlled-checkbox";
-import { Card } from "components/ui/card";
-import {
-  SingInForm,
-  useSignInScheme,
-} from "components/schemes/use-sign-in-scheme";
+import { SingInForm, useSignInScheme } from 'components/schemes/use-sign-in-scheme'
+import Button from 'components/ui/button/button'
+import { Card } from 'components/ui/card'
+import { ControlledCheckbox } from 'components/ui/controlled/controlled-checkbox'
+import { ControlledTextField } from 'components/ui/controlled/controlled-text-field'
+import { Typography } from 'components/ui/typography'
 
 type Props = {
-  onSubmit: (data: SingInForm) => void;
-};
+  onSubmit: (data: SingInForm) => void
+}
 
 export const SignIn = ({ onSubmit }: Props) => {
-  const { handleSubmit, control } = useSignInScheme();
+  const { handleSubmit, control } = useSignInScheme()
 
-  const onFormSubmit = handleSubmit(onSubmit);
+  const onFormSubmit = handleSubmit(onSubmit)
 
   return (
     <Card className={s.card}>
@@ -30,17 +26,8 @@ export const SignIn = ({ onSubmit }: Props) => {
       <form className={s.form} onSubmit={onFormSubmit}>
         <DevTool control={control} />
         <ControlledTextField label="Email" control={control} name="email" />
-        <ControlledTextField
-          label="Password"
-          control={control}
-          name="password"
-          type="password"
-        />
-        <ControlledCheckbox
-          label="Remember me"
-          control={control}
-          name="rememberMe"
-        />
+        <ControlledTextField label="Password" control={control} name="password" type="password" />
+        <ControlledCheckbox label="Remember me" control={control} name="rememberMe" />
 
         <Typography variant="body2" as="a" href="#" className={s.recovery}>
           Forgot Password?
@@ -56,5 +43,5 @@ export const SignIn = ({ onSubmit }: Props) => {
         Sign Up
       </Typography>
     </Card>
-  );
-};
+  )
+}

@@ -2,31 +2,46 @@
   display: flex;
   flex-direction: column;
   gap: 30px;
-  margin-top: 36px;
+
+  max-width: 1006px;
+  margin: 36px auto auto;
 
   .button {
-    display: flex;
     align-self: end;
-    margin: 0 136px;
   }
 
-  .tempButton {
-    background-color: var(--color-accent-500);
-    border: none;
-    border-radius: 0.25rem;
-  }
   .deckName {
+    color: var(--color-light-100);
     text-decoration: none;
   }
+
+  .tempbutton:hover {
+    cursor: pointer;
+  }
 }
+
 .textModal {
   width: 100%;
-
   white-space: pre-line;
 }
 
 .blockButton {
-  width: 100%;
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  width: 100%;
+}
+
+.iconsContainer {
+  display: flex;
+  gap: 25px;
+}
+
+.icon {
+  padding: 0;
+  border: none;
+}
+
+.image {
+  height: 50px;
 }

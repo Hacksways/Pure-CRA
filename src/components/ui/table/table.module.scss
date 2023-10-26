@@ -1,11 +1,14 @@
 .table {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
 }
 
 .thead {
   background-color: var(--color-dark-500);
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .th {
@@ -24,9 +27,8 @@
 }
 
 .td {
-  word-break: normal;
-  white-space: pre-wrap;
   width: 201px;
   padding: 6px 24px;
+  white-space: pre-wrap;
   background-color: var(--color-dark-900);
 }

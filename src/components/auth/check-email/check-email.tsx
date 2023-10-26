@@ -1,11 +1,12 @@
-import { Button } from "../../ui/button";
-import { Card } from "components/ui/card";
+import { Card } from '../../ui/card'
+import { Typography } from '../../ui/typography'
 
-import s from "./check-email.module.scss";
-import { Typography } from "components/ui/typography";
-import { Email } from "assets/icons/email";
+import s from './check-email.module.scss'
 
-export const CheckEMail = () => {
+import { Email } from 'assets'
+import Button from 'components/ui/button/button'
+
+export const CheckEmail = () => {
   return (
     <Card className={s.card}>
       <Typography variant="large" className={s.title}>
@@ -19,5 +20,5 @@ export const CheckEMail = () => {
         Back to Sign In
       </Button>
     </Card>
-  );
-};
+  )
+}

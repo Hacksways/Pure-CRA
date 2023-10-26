@@ -1,40 +1,46 @@
-import { Edit, PersonOutline } from "assets/icons";
-import { HeaderLogo } from "assets/icons/header-logo";
-import Logout from "assets/icons/logout";
-import PlayArrow from "assets/icons/play-arrow";
-import Trash from "assets/icons/trash";
-import { Avatar } from "../avatar";
-import { Button } from "../button";
-import { Dropdown } from "../dropdown";
-import { DropdownItem } from "../dropdown/dropdownItem";
-import { DropdownItemWithIcon } from "../dropdown/dropdownItem/dropdownItemWithIcon";
-import { TestAva } from "../textava/testava";
-import { Typography } from "../typography";
-import s from "./header.module.scss";
+import { ComponentPropsWithoutRef } from 'react'
 
+import { Link } from 'react-router-dom'
+
+import { DropdownItem } from '../dropdown/dropdownItem'
+import { DropdownItemWithIcon } from '../dropdown/dropdownItem/dropdownItemWithIcon'
+import { Typography } from '../typography'
+
+import s from './header.module.scss'
+
+import { HeaderLogo, Logout, PersonOutline } from 'assets'
+import { Avatar } from 'components/avatar'
+import Button from 'components/ui/button/button'
+import { Dropdown } from 'components/ui/dropdown'
+
+type UserData = { avatar: string | null; email: string; name: string }
 type Props = {
-  variant?: "with button" | "with avatar";
-};
+  variant?: 'with button' | 'with avatar'
+  user?: UserData
+  onSignOut?: () => void
+} & ComponentPropsWithoutRef<'header'>
 
-export const Header = ({ variant = "with button" }: Props) => {
+export const Header = ({ variant = 'with button', user, onSignOut, ...rest }: Props) => {
   return (
-    <header className={s.header}>
-      <HeaderLogo />
-      {variant === "with avatar" ? (
+    <header {...rest} className={s.header}>
+      <Link className={s.headerLogo} to={'/'}>
+        <HeaderLogo />
+      </Link>
+      {variant === 'with avatar' ? (
         <div className={s.userBlock}>
           <Typography variant="subtitle1" as="span" className={s.userName}>
-            User name
+            {user?.name ? user.name : 'User Name'}
           </Typography>
-
           <Dropdown
             trigger={
               <div className={s.wrapperAvatar}>
                 <Avatar
                   src={
-                    "https://fikiwiki.com/uploads/posts/2022-02/1644918620_17-fikiwiki-com-p-krasivie-kartinki-visokogo-razresheniya-19.jpg"
+                    user?.avatar ||
+                    'https://fikiwiki.com/uploads/posts/2022-02/1644918620_17-fikiwiki-com-p-krasivie-kartinki-visokogo-razresheniya-19.jpg'
                   }
                   size={36}
-                  name="User"
+                  name={user?.name || 'User'}
                 />
               </div>
             }
@@ -42,31 +48,22 @@ export const Header = ({ variant = "with button" }: Props) => {
             <DropdownItem>
               <Avatar
                 src={
-                  "https://fikiwiki.com/uploads/posts/2022-02/1644918620_17-fikiwiki-com-p-krasivie-kartinki-visokogo-razresheniya-19.jpg"
+                  user?.avatar ||
+                  'https://fikiwiki.com/uploads/posts/2022-02/1644918620_17-fikiwiki-com-p-krasivie-kartinki-visokogo-razresheniya-19.jpg'
                 }
                 size={36}
-                name="User"
+                name={user?.name || 'User'}
               />
+
               <div>
-                <Typography variant="subtitle2">User name</Typography>
-                <Typography
-                  variant="caption"
-                  style={{ color: "var(--color-dark-100)" }}
-                >
-                  example@email.com
+                <Typography variant="subtitle2"> {user?.name ? user.name : 'User Name'}</Typography>
+                <Typography variant="caption" style={{ color: 'var(--color-dark-100)' }}>
+                  {user?.email ? user.email : 'User Name'}
                 </Typography>
               </div>
             </DropdownItem>
-            <DropdownItemWithIcon
-              icon={<PersonOutline />}
-              text="My Profile"
-              onSelect={() => {}}
-            />
-            <DropdownItemWithIcon
-              icon={<Logout />}
-              text="Sign Out"
-              onSelect={() => {}}
-            />
+            <DropdownItemWithIcon icon={<PersonOutline />} text="My Profile" onSelect={() => {}} />
+            <DropdownItemWithIcon icon={<Logout />} text="Sign Out" onSelect={onSignOut} />
           </Dropdown>
         </div>
       ) : (
@@ -77,5 +74,5 @@ export const Header = ({ variant = "with button" }: Props) => {
         </Button>
       )}
     </header>
-  );
-};
+  )
+}

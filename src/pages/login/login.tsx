@@ -1,5 +1,5 @@
-import { SignIn } from "components/auth/sign-in";
+import { SignIn } from 'components/auth'
 
 export const Login = () => {
-  return <SignIn onSubmit={() => {}} />;
-};
+  return <SignIn onSubmit={() => {}} />
+}

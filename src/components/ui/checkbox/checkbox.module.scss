@@ -1,11 +1,16 @@
 @mixin circle($backgroundColor) {
-  content: "";
-  width: 36px;
-  height: 36px;
-  background-color: $backgroundColor;
-  border-radius: 50%;
+  content: '';
+
   position: absolute;
   z-index: -1;
+
+  display: flex;
+
+  width: 36px;
+  height: 36px;
+
+  background-color: $backgroundColor;
+  border-radius: 50%;
 }
 
 .default {
@@ -54,7 +59,7 @@
   display: flex;
   gap: 11px;
   align-items: center;
-  justify-content: flex-start;
+
   width: fit-content;
 
   color: var(--color-light-100);
@@ -62,8 +67,4 @@
 
 .labelDisabled {
   color: var(--color-dark-100);
-}
-
-.wrapper {
-  display: flex;
 }

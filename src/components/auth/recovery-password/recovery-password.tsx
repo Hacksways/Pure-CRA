@@ -1,31 +1,32 @@
-import { ControlledTextField } from "components/ui/controlled/controlled-text-field";
-import { DevTool } from "@hookform/devtools";
+import { DevTool } from '@hookform/devtools'
 
-import { Button } from "../../ui/button";
-import { Card } from "components/ui/card";
-
-import s from "./recovery-password.module.scss";
-import { Typography } from "components/ui/typography";
 import {
   RecoveryPasswordForm,
   useRecoveryPasswordScheme,
-} from "components/schemes/use-recovery-password-scheme";
+} from '../../schemes/use-recovery-password-scheme'
+import { ControlledTextField } from '../../ui/controlled'
+
+import s from './recovery-password.module.scss'
+
+import Button from 'components/ui/button/button'
+import { Card } from 'components/ui/card'
+import { Typography } from 'components/ui/typography'
 
 type Props = {
-  onSubmit: (data: RecoveryPasswordForm) => void;
-};
+  onSubmit: (data: RecoveryPasswordForm) => void
+}
 
 export const RecoveryPassword = ({ onSubmit }: Props) => {
-  const { handleSubmit, control } = useRecoveryPasswordScheme();
+  const { handleSubmit, control } = useRecoveryPasswordScheme()
 
-  const onFormSubmit = handleSubmit(onSubmit);
+  const onFormSubmit = handleSubmit(onSubmit)
 
   return (
     <Card className={s.card}>
       <Typography variant="large" className={s.title}>
         Forgot your password?
       </Typography>
-      <form onSubmit={onFormSubmit}>
+      <form className={s.form} onSubmit={onFormSubmit}>
         <DevTool control={control} />
         <ControlledTextField label="Email" control={control} name="email" />
 
@@ -43,5 +44,5 @@ export const RecoveryPassword = ({ onSubmit }: Props) => {
         Try logging in
       </Typography>
     </Card>
-  );
-};
+  )
+}

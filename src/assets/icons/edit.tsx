@@ -1,8 +1,5 @@
-import { SVGProps, Ref, forwardRef, memo } from "react";
-const SvgComponent = (
-  props: SVGProps<SVGSVGElement>,
-  ref: Ref<SVGSVGElement>,
-) => (
+import { SVGProps, Ref, forwardRef, memo } from 'react'
+const SvgComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
     width="24"
     height="24"
@@ -28,8 +25,8 @@ const SvgComponent = (
       </clipPath>
     </defs>
   </svg>
-);
-const ForwardRef = forwardRef(SvgComponent);
-const Memo = memo(ForwardRef);
+)
+const ForwardRef = forwardRef(SvgComponent)
+const Memo = memo(ForwardRef)
 
-export default Memo;
+export default Memo

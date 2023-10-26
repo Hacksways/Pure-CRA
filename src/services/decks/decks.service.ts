@@ -1,71 +1,79 @@
-import { baseApi } from "../base-api";
 import {
-  CreateDeckArgs,
-  Deck,
-  Decks,
-  DeleteDeckParams,
-  DeleteDeck,
-  GetDecksParams,
   Cards,
-  GetCardsParams,
-  Card,
   CreateCardArgs,
-} from "./decks.types";
+  Deck,
+  DecksResponse,
+  DeleteDeck,
+  DeleteDeckParams,
+  GetCardsParams,
+  GetDecksParams,
+  UpdateDeckParamsType,
+} from './decks.types'
+
+import { baseApi } from 'services/base-api'
+import { Card } from 'services/cards/cards.types'
 
 export const DecksService = baseApi.injectEndpoints({
-  endpoints: (builder) => {
+  endpoints: builder => {
     return {
-      getDecks: builder.query<Decks, GetDecksParams | void>({
-        query: (params) => ({
-          url: "v1/decks",
+      getDecks: builder.query<DecksResponse, GetDecksParams | void>({
+        query: params => ({
+          url: 'v1/decks',
           params: params ?? {},
         }),
-        providesTags: ["Decks"],
+        providesTags: ['Decks'],
       }),
-      createDeck: builder.mutation<Deck, CreateDeckArgs>({
-        query: (body) => ({
-          url: "v1/decks",
-          method: "POST",
+      createDeck: builder.mutation<Deck, FormData>({
+        query: body => ({
+          url: 'v1/decks',
+          method: 'POST',
           body,
         }),
-        invalidatesTags: ["Decks"],
+        invalidatesTags: ['Decks'],
       }),
       deleteDeck: builder.mutation<DeleteDeck, DeleteDeckParams>({
-        query: (params) => ({
+        query: params => ({
           url: `v1/decks/${params.id}`,
-          method: "DELETE",
+          method: 'DELETE',
         }),
-        invalidatesTags: ["Decks"],
+        invalidatesTags: ['Decks'],
       }),
       getCards: builder.query<Cards, GetCardsParams>({
-        query: (params) => {
-          const { id, ...otherParams } = params;
+        query: params => {
+          const { id, ...otherParams } = params
+
           return {
             url: `v1/decks/${id}/cards`,
             params: otherParams,
-          };
+          }
         },
-        providesTags: ["Cards"],
+        providesTags: ['Cards'],
+      }),
+      updateDeck: builder.mutation<Deck, UpdateDeckParamsType>({
+        query: ({ id, body }) => ({
+          url: `v1/decks/${id}`,
+          method: 'PATCH',
+          body,
+        }),
+        invalidatesTags: ['Decks'],
       }),
       createCard: builder.mutation<Card, CreateCardArgs>({
-        query: (params) => {
-          const { id, ...body } = params;
-          return {
-            url: `v1/decks/${id}/cards`,
-            method: "POST",
-            body,
-          };
-        },
-        invalidatesTags: ["Cards"],
+        query: params => ({
+          url: `v1/decks/${params.id}/cards`,
+          method: 'POST',
+          body: params.body,
+        }),
+        invalidatesTags: ['Cards'],
       }),
-    };
+    }
   },
-});
+})
 
 export const {
   useGetDecksQuery,
   useCreateDeckMutation,
   useDeleteDeckMutation,
   useGetCardsQuery,
-  useCreateCardMutation
-} = DecksService;
+  useUpdateDeckMutation,
+  useCreateCardMutation,
+} = DecksService
