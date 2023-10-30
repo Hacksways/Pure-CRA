@@ -32,7 +32,6 @@ import {
 } from "services/decks";
 import { decksSlice } from "services/decks/deck.slice";
 import { useAppDispatch, useAppSelector } from "services/store";
-import { AddDeckModal } from ".";
 
 type CurrentDeck = Pick<Deck, "id" | "name">;
 const columns: Column[] = [
@@ -125,7 +124,7 @@ export const Decks = () => {
 
   return (
     <div className={s.pageDeck}>
-      <AddDeckModal
+      {/* <AddDeckModal
         trigger={
           <Button className={s.button}>
             <Typography variant="subtitle2" as="span">
@@ -135,7 +134,7 @@ export const Decks = () => {
         }
         buttonTitle={"Add New Deck"}
         onSubmit={onClickAddNewDeckButton}
-      ></AddDeckModal>
+      ></AddDeckModal> */}
       <DecksFilter
         inputValue={searchByName}
         onChangeInputValue={(value) => setSearchByName(value)}
