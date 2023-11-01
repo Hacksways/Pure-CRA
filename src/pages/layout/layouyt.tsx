@@ -1,18 +1,24 @@
-import { Outlet } from 'react-router-dom'
+import { Outlet } from "react-router-dom";
 
-import { Header } from 'components/ui/header'
-import { useLogoutMutation, useMeQuery } from 'services/auth/auth.service'
+import { Header } from "components/ui/header";
+import { useLogoutMutation, useMeQuery } from "services/auth/auth.service";
 
 export const Layout = () => {
-  const { data: user } = useMeQuery()
-  const [logout] = useLogoutMutation()
+  const { data: user } = useMeQuery();
+  const [logout] = useLogoutMutation();
 
   return (
     <>
-      <Header user={user} variant={'with avatar'} onSignOut={logout} />
-      <main style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+      <Header user={user} variant={"with avatar"} onSignOut={logout} />
+      <main
+        // style={{
+        //   display: "flex",
+        //   justifyContent: "center",
+        //   alignItems: "center",
+        // }}
+      >
         <Outlet />
       </main>
     </>
-  )
-}
+  );
+};
