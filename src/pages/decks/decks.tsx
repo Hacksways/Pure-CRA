@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import s from "./decks.module.scss";
 
@@ -32,6 +32,7 @@ import {
 } from "services/decks";
 import { decksSlice } from "services/decks/deck.slice";
 import { useAppDispatch, useAppSelector } from "services/store";
+import { LearnDeck } from "./learn-deck/learn-deck";
 
 type CurrentDeck = Pick<Deck, "id" | "name">;
 const columns: Column[] = [
@@ -65,6 +66,9 @@ export const Decks = () => {
   const dispatch = useAppDispatch();
   const cardsCount = useAppSelector((state) => state.deckSlice.cardsCount);
   const searchByName = useAppSelector((state) => state.deckSlice.searchByName);
+
+  const navigate = useNavigate();
+
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [currentDeck, setCurrentDeck] = useState<CurrentDeck>(
     {} as CurrentDeck,
@@ -121,6 +125,10 @@ export const Decks = () => {
   const editDeckCallback = (id: any, data: FormData) => {
     updateDeck({ id: id, body: data });
   };
+
+  // const learnDeckHandler = () => {
+  //   navigate("card");
+  // };
 
   return (
     <div className={s.pageDeck}>
@@ -203,7 +211,11 @@ export const Decks = () => {
               <TableCell>
                 <div className={s.iconsContainer}>
                   <Button variant={"tertiary"} className={s.icon}>
-                    <PlayArrow />
+                    {/* <LearnDeck trigger={<PlayArrow />}></LearnDeck> */}
+                    {/* <PlayArrow onClick={learnDeckHandler} /> */}
+                    <NavLink to={`/card/${deck.id}`}>
+                      <PlayArrow />
+                    </NavLink>
                   </Button>
                   {deck.author.id === user?.id && (
                     <>

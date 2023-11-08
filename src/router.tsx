@@ -12,6 +12,7 @@ import { Layout } from "pages/layout";
 import { Login } from "pages/login/login";
 import { SignUpPage } from "pages/sign-up";
 import { useMeQuery } from "services/auth/auth.service";
+import { CardPage } from "pages/decks/cards/card/card";
 
 const publicRoutes: RouteObject[] = [
   {
@@ -32,6 +33,10 @@ const privateRoutes: RouteObject[] = [
   {
     path: "/cards/:deckID",
     element: <Cards />,
+  },
+  {
+    path: "/card/:deckID",
+    element: <CardPage />,
   },
 ];
 

@@ -1,14 +1,19 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-import { Modal } from 'components/ui/modal'
-import { DeckForm, DeckProps } from 'pages/decks/add-deck'
+import { Modal } from "components/ui/modal";
+import { DeckForm, DeckProps } from "pages/decks/add-deck";
 
-export const EditDeck = ({ trigger, buttonTitle, values, onSubmit }: DeckProps): JSX.Element => {
-  const [open, setOpen] = useState(false)
+export const EditDeck = ({
+  trigger,
+  buttonTitle,
+  values,
+  onSubmit,
+}: DeckProps): JSX.Element => {
+  const [open, setOpen] = useState(false);
 
   const closeModal = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   return (
     <Modal trigger={trigger} open={open} onClose={setOpen} title="Edit Deck">
@@ -19,5 +24,5 @@ export const EditDeck = ({ trigger, buttonTitle, values, onSubmit }: DeckProps):
         onClose={closeModal}
       />
     </Modal>
-  )
-}
+  );
+};

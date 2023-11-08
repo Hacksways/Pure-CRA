@@ -1,0 +1,30 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 420px;
+  height: 288px;
+  margin: 84px auto 0 auto;
+  align-items: center;
+  padding: 33px 36px 48px 36px;
+  .textWrapper {
+    display: flex;
+    gap: 5px;
+    align-self: flex-start;
+    .image {
+      width: 150px;
+      height: 50px;
+    }
+  }
+  .question {
+    margin-top: 45px;
+  }
+  .attempts {
+    margin-bottom: 41px;
+    color: var(--color-dark-100);
+  }
+
+  .buttonWrapper {
+    display: flex;
+    width: 100%;
+  }
+}
