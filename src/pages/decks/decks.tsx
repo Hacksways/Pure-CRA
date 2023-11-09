@@ -32,7 +32,6 @@ import {
 } from "services/decks";
 import { decksSlice } from "services/decks/deck.slice";
 import { useAppDispatch, useAppSelector } from "services/store";
-import { LearnDeck } from "./learn-deck/learn-deck";
 
 type CurrentDeck = Pick<Deck, "id" | "name">;
 const columns: Column[] = [
@@ -126,10 +125,6 @@ export const Decks = () => {
     updateDeck({ id: id, body: data });
   };
 
-  // const learnDeckHandler = () => {
-  //   navigate("card");
-  // };
-
   return (
     <div className={s.pageDeck}>
       {/* <AddDeckModal
@@ -211,8 +206,6 @@ export const Decks = () => {
               <TableCell>
                 <div className={s.iconsContainer}>
                   <Button variant={"tertiary"} className={s.icon}>
-                    {/* <LearnDeck trigger={<PlayArrow />}></LearnDeck> */}
-                    {/* <PlayArrow onClick={learnDeckHandler} /> */}
                     <NavLink to={`/card/${deck.id}`}>
                       <PlayArrow />
                     </NavLink>
