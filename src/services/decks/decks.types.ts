@@ -92,5 +92,14 @@ export type CreateCardArgs = {
 
 export type LearnDeckParams = {
   id: string;
-  previousCardId?: string;
+
+  previousCardId?: string | null;
+};
+
+export type SaveGradeParams = {
+  id: string;
+  body: {
+    cardId: string;
+    grade: number;
+  };
 };
